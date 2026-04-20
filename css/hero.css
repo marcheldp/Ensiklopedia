@@ -1,0 +1,98 @@
+/* --- HERO SECTION --- */
+.hero-banner {
+    background: #00152b; /* Biru gelap senada dengan sidebar h3 */
+    color: white;
+    padding: 30px 0 0 0; /* Padding bawah 0 karena nanti diisi menu scroll */
+    border-bottom: 4px solid #cc0000; /* Garis merah sebagai aksen pemisah */
+}
+
+/* Breadcrumb Style */
+.breadcrumb {
+    font-size: 0.75rem;
+    color: #cbd5e0;
+    margin-bottom: 15px;
+}
+
+.breadcrumb a {
+    color: #cbd5e0;
+    text-decoration: none;
+}
+
+.breadcrumb .active {
+    color: white;
+    font-weight: bold;
+}
+
+.hero-content h1 {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+}
+
+.hero-desc {
+    font-size: 0.95rem;
+    color: #e2e8f0;
+    max-width: 700px;
+    margin: 0 auto 30px auto; 
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* Subkategori Horizontal Scroll */
+.sub-nav h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    color: #cc0000;
+}
+
+.scroll-wrapper {
+    display: flex;
+    overflow-x: auto; /* Mengaktifkan scroll horizontal */
+    gap: 10px;
+    padding-bottom: 15px;
+    -webkit-overflow-scrolling: touch; /* Scroll lebih halus di HP */
+}
+
+/* Menghilangkan scrollbar agar estetik (opsional) */
+.scroll-wrapper::-webkit-scrollbar {
+    height: 4px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb {
+    background: #003366;
+}
+
+.sub-item {
+    background: #002347;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    white-space: nowrap; /* Mencegah teks turun ke bawah */
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid #003366;
+    transition: 0.3s;
+}
+
+/* Hilangkan garis luar (outline) biru/hitam bawaan browser saat ditekan */
+.sub-item:focus {
+    outline: none;
+}
+
+/* --- GANTI BAGIAN HOVER INI --- */
+@media (hover: hover) {
+    .sub-item:hover {
+        /* Ubah menjadi biru yang lebih terang, bukan merah */
+        background: #004080; 
+        border-color: #00509e;
+    }
+}
+
+/* Status saat kategori sedang aktif / dipilih (Tetap Merah) */
+.sub-item.active-btn {
+    background-color: #cc0000 !important;
+    color: white !important;
+    border-color: #cc0000 !important;
+}

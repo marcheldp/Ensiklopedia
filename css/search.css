@@ -1,0 +1,45 @@
+/* --- 3. SEARCH SYSTEM --- */
+.search-bar {
+    display: flex;
+    width: 100%;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 10px 25px;
+    background: #cc0000;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Spinner Loading */
+.spinner {
+    display: none; /* Sembunyi secara default */
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.search-bar button:disabled {
+    background: #880000;
+    cursor: not-allowed;
+}
