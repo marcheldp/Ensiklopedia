@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indeks Kategori - Ensiklopedia Tokoh Sejarah</title>
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/search.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- STYLING HALAMAN KATEGORI --- */
+        body { background: #f4f6f9; }
+        
+        .category-hero {
+            background: #00152b; 
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 4px solid #cc0000;
+        }
+
+        .category-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .category-hero p {
+            font-size: 1.1rem;
+            color: #cbd5e0;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .category-main {
+            background: white; 
+            padding: 50px; 
+            margin-top: 30px; 
+            margin-bottom: 50px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
+            border-radius: 8px;
+            min-height: 500px;
+        }
+
+        /* --- TAMPILAN GRID KATEGORI --- */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .cat-card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-top: 4px solid #002347;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            text-decoration: none;
+            display: block;
+        }
+
+        .cat-card:hover {
+            transform: translateY(-5px);
+            border-top-color: #cc0000;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .cat-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: #002347;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .cat-card:hover h3 { color: #cc0000; }
+
+        .cat-card p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* --- TAMPILAN ARTIKEL DALAM KATEGORI --- */
+        #articlesContainer { display: none; }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: #666;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 0;
+        }
+        .btn-back:hover { color: #cc0000; text-decoration: underline; }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            color: #002347;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        /* Styling Kartu Artikel (Diambil dari desain index.html Anda) */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .article-card-home {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eaeaea;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .article-card-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+        }
+
+        .article-card-home img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .card-body { padding: 20px; display: flex; flex-direction: column; }
+        .card-title { font-size: 1.3rem; color: #0055a4; margin-bottom: 12px; text-decoration: none; font-weight: bold; }
+        .card-title:hover { text-decoration: underline; }
+        .card-excerpt { font-size: 0.95rem; color: #333333; line-height: 1.6; }
+
+        @media (max-width: 768px) {
+            .category-main { padding: 30px 20px; }
+            .category-hero h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="header-top">
+                <div class="logo">ENSIKLOPEDIA</div>
+                <nav class="header-nav">
+                    <a href="category.html" style="font-weight: bold; border-bottom: 2px solid white;">Category</a>
+                    <a href="about.html">About</a>
+                    <a href="index.html">Home</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Cari tokoh atau peristiwa bersejarah...">
+                <button id="searchBtn">
+                    <span id="btnText">Cari</span>
+                    <div id="loadingSpinner" class="spinner" style="display: none;"></div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="category-hero">
+        <div class="container">
+            <h1>Indeks Kategori</h1>
+            <p>Telusuri rekam jejak para tokoh berpengaruh berdasarkan klasifikasi peran dan bidang kontribusi mereka terhadap sejarah bangsa.</p>
+        </div>
+    </section>
+
+    <main class="container category-main">
+        
+        <div id="categoriesGrid" class="category-grid">
+            <div class="cat-card" data-category="Presiden">
+                <h3>Presiden</h3>
+                <p>Kepala negara dan pemerintahan yang pernah memimpin Republik Indonesia.</p>
+            </div>
+            <div class="cat-card" data-category="Wakil Presiden">
+                <h3>Wakil Presiden</h3>
+                <p>Pendamping kepala negara dalam menjalankan roda pemerintahan.</p>
+            </div>
+            <div class="cat-card" data-category="Pahlawan Nasional">
+                <h3>Pahlawan Nasional</h3>
+                <p>Tokoh pejuang yang berjasa sangat luar biasa bagi nusa dan bangsa.</p>
+            </div>
+            <div class="cat-card" data-category="Raja-Raja Nusantara">
+                <h3>Raja Nusantara</h3>
+                <p>Pemimpin kerajaan dan kesultanan masa lampau di nusantara.</p>
+            </div>
+            <div class="cat-card" data-category="Tokoh Agama">
+                <h3>Tokoh Agama</h3>
+                <p>Penyebar ajaran agama dan pemuka spiritual yang berpengaruh.</p>
+            </div>
+            <div class="cat-card" data-category="Budayawan">
+                <h3>Budayawan</h3>
+                <p>Figur pelestari dan pengembang kebudayaan serta seni tradisi.</p>
+            </div>
+            <div class="cat-card" data-category="Sastrawan">
+                <h3>Sastrawan</h3>
+                <p>Penulis, penyair, dan pujangga yang mewarnai dunia literasi.</p>
+            </div>
+        </div>
+
+        <div id="articlesContainer">
+            <button class="btn-back" id="btnBack">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
+                Kembali ke Daftar Kategori
+            </button>
+            
+            <h2 id="selectedCategoryTitle" class="section-title">Memuat...</h2>
+            
+            <div id="categoryArticlesGrid" class="articles-grid">
+                </div>
+        </div>
+
+    </main>
+
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        // Ganti dengan kredensial Supabase Anda
+        const SUPABASE_URL = 'https://akktasxpxfbhlcfnypzt.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFra3Rhc3hweGZiaGxjZm55cHp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2ODY2MjQsImV4cCI6MjA5MjI2MjYyNH0.luxCsBuXwueYSYjF5TFbs4jqxejFI_0vP0aHzMS1clI';
+        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const categoriesGrid = document.getElementById('categoriesGrid');
+        const articlesContainer = document.getElementById('articlesContainer');
+        const categoryArticlesGrid = document.getElementById('categoryArticlesGrid');
+        const selectedCategoryTitle = document.getElementById('selectedCategoryTitle');
+        const btnBack = document.getElementById('btnBack');
+
+        // Logika Klik Kartu Kategori
+        document.querySelectorAll('.cat-card').forEach(card => {
+            card.addEventListener('click', async () => {
+                const categoryName = card.getAttribute('data-category');
+                
+                // Transisi Tampilan UI
+                categoriesGrid.style.display = 'none';
+                articlesContainer.style.display = 'block';
+                selectedCategoryTitle.innerText = `Kategori: ${categoryName}`;
+                categoryArticlesGrid.innerHTML = '<p style="color: #666;">Mencari arsip...</p>';
+
+                // Scroll ke atas area konten
+                document.querySelector('.category-main').scrollIntoView({ behavior: 'smooth' });
+
+                // Menarik data dari Supabase
+                const { data, error } = await supabase
+                    .from('articles')
+                    .select('*')
+                    .eq('category', categoryName)
+                    .order('created_at', { ascending: false });
+
+                if (error) {
+                    categoryArticlesGrid.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+                    return;
+                }
+
+                if (data.length === 0) {
+                    categoryArticlesGrid.innerHTML = `<p style="color: #666; font-style: italic;">Belum ada artikel yang diterbitkan dalam kategori ini.</p>`;
+                    return;
+                }
+
+                // Render Artikel
+                let html = '';
+                data.forEach(art => {
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = art.content;
+                    const aboutElement = tempDiv.querySelector('.art-about');
+                    let excerpt = aboutElement 
+                        ? aboutElement.innerText.replace('Tentang:', '').trim() 
+                        : (tempDiv.innerText.substring(0, 150) + '...');
+
+                    html += `
+                        <article class="article-card-home">
+                            <img src="${art.image_url}" alt="Foto ${art.title}" loading="lazy">
+                            <div class="card-body">
+                                <a href="article.html?slug=${art.slug}" class="card-title">${art.title}</a>
+                                <p class="card-excerpt">${excerpt}</p>
+                            </div>
+                        </article>
+                    `;
+                });
+                
+                categoryArticlesGrid.innerHTML = html;
+            });
+        });
+
+        // Logika Tombol Kembali
+        btnBack.addEventListener('click', () => {
+            articlesContainer.style.display = 'none';
+            categoriesGrid.style.display = 'grid';
+            categoryArticlesGrid.innerHTML = ''; // Bersihkan memori DOM
+        });
+
+        // Logika Pencarian (Redirect ke Home)
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('searchInput');
+
+        function doSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                window.location.href = `index.html?search=${encodeURIComponent(query)}`;
+            }
+        }
+
+        searchBtn.addEventListener('click', doSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') doSearch();
+        });
+
+        searchInput.addEventListener('input', () => {
+            searchBtn.disabled = searchInput.value.trim() === '';
+        });
+        searchBtn.disabled = true;
+    </script>
+</body>
+</html>

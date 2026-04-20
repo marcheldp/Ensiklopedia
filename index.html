@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensiklopedia Tokoh Sejarah</title>
+    
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/hero.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <div class="header-top">
+            <div class="logo">ENSIKLOPEDIA</div>
+            <nav class="header-nav">
+                <a href="category.html">Category</a>
+                <a href="about.html">About</a>
+                <a href="index.html">Home</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Cari tokoh atau peristiwa bersejarah...">
+            <button id="searchBtn" disabled>
+                <span id="btnText">Cari</span>
+                <div id="loadingSpinner" class="spinner" style="display: none;"></div>
+            </button>
+        </div>
+    </div>
+</header>
+
+<section class="hero-banner">
+    <div class="container">
+        <nav class="breadcrumb" id="mainBreadcrumb" style="display: none;">
+            <a href="index.html">Home</a> &gt; 
+            <span id="sub-breadcrumb">Pilih Kategori</span> &gt; 
+            <span id="title-breadcrumb" class="active">...</span>
+        </nav>
+
+        <div class="hero-content" id="mainHeroContent">
+            <h1>Tokoh Berpengaruh Di Indonesia</h1>
+            <p class="hero-desc">Kategori umum ini mencakup pilihan topik yang lebih spesifik tentang figur yang membentuk sejarah bangsa.</p>
+        </div>
+
+        <div class="sub-nav">
+            <h3>Jelajahi Subkategori</h3>
+            <div class="scroll-wrapper">
+                <a href="#" class="sub-item">Presiden</a>
+                <a href="#" class="sub-item">Wakil Presiden</a>
+                <a href="#" class="sub-item">Pahlawan Nasional</a>
+                <a href="#" class="sub-item">Raja-Raja Nusantara</a>
+                <a href="#" class="sub-item">Tokoh Agama</a>
+                <a href="#" class="sub-item">Budayawan</a>
+                <a href="#" class="sub-item">Sastrawan</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<main class="container" id="featuredSection" style="margin-top: 40px; margin-bottom: 40px;">
+    <h2 id="sectionTitle" style="text-align: center; font-family: 'Playfair Display', serif; margin-bottom: 30px; color: #002347;">Artikel Unggulan</h2>
+    
+    <div id="latestArticlesGrid" class="articles-grid">
+        <p style="text-align: center; color: #666; grid-column: 1 / -1;">Memuat artikel...</p>
+    </div>
+</main>
+
+<script type="module" src="script/script.js"></script>
+</body>
+</html>

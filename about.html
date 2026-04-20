@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - Ensiklopedia Tokoh Sejarah</title>
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/search.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- STYLING HALAMAN ABOUT --- */
+        body { background: #f4f6f9; }
+        
+        .about-hero {
+            background: #00152b; /* Biru sangat gelap */
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 4px solid #cc0000;
+        }
+
+        .about-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .about-hero p {
+            font-size: 1.1rem;
+            color: #cbd5e0;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .about-main {
+            background: white; 
+            padding: 50px; 
+            margin-top: 30px; 
+            margin-bottom: 50px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
+            border-radius: 8px;
+        }
+
+        .about-content {
+            line-height: 1.8; 
+            color: #333; 
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            color: #002347;
+            font-size: 1.8rem;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        /* Grid untuk Nilai Utama (Core Values) */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 3px solid #002347;
+            text-align: center;
+        }
+
+        .value-card h3 {
+            color: #002347;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .value-card p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: #eef2f7;
+            border-radius: 8px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: #cc0000;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        .cta-btn:hover { background: #a00000; }
+
+        @media (max-width: 768px) {
+            .about-main { padding: 30px 20px; }
+            .about-hero h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="header-top">
+                <div class="logo">ENSIKLOPEDIA</div>
+                <nav class="header-nav">
+                    <a href="category.html">Category</a>
+                    <a href="about.html" style="font-weight: bold; border-bottom: 2px solid white;">About</a>
+                    <a href="index.html">Home</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Cari tokoh atau peristiwa bersejarah...">
+                <button id="searchBtn">
+                    <span id="btnText">Cari</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="about-hero">
+        <div class="container">
+            <h1>Melestarikan Sejarah, Menginspirasi Masa Depan</h1>
+            <p>Platform digital yang didedikasikan untuk mengarsipkan dan merawat warisan rekam jejak para tokoh pembangun bangsa.</p>
+        </div>
+    </section>
+
+    <main class="container about-main">
+        <div class="about-content">
+            <h2>Misi Kami</h2>
+            <p>
+                Sejarah sering kali memudar seiring berjalannya waktu jika tidak diarsipkan dengan baik. Proyek <strong>Ensiklopedia Tokoh Sejarah</strong> lahir dari komitmen untuk menyediakan basis data profil tokoh-tokoh berpengaruh di Indonesia dalam format digital yang modern, cepat, dan terstruktur.
+            </p>
+            <p>
+                Kami bertujuan untuk menjadi rujukan pertama bagi para pelajar, mahasiswa, akademisi, dan masyarakat umum yang ingin menelusuri kisah hidup, perjuangan, serta kontribusi para pahlawan, presiden, budayawan, dan intelektual nusantara.
+            </p>
+
+            <h2>Nilai Utama</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>Akurasi & Integritas</h3>
+                    <p>Semua artikel disusun dan dikurasi berdasarkan sumber literasi yang dapat dipertanggungjawabkan untuk mencegah misinformasi sejarah.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Aksesibilitas</h3>
+                    <p>Kami merancang sistem ini secara responsif dan tanpa batasan (paywall), memastikan sejarah milik bangsa dapat dibaca oleh siapa saja, di mana saja.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Terus Berkembang</h3>
+                    <p>Arsip kami bukanlah dokumen statis. Database kami akan terus diperbarui dengan penambahan profil-profil baru secara berkala.</p>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h3 style="color: #002347; margin-bottom: 10px;">Mari Berkontribusi</h3>
+                <p>Apakah ada tokoh penting atau pahlawan lokal yang menurut Anda belum tercatat dalam arsip kami? Hubungi kami untuk memberikan saran penyuntingan atau penambahan artikel baru.</p>
+                <a href="contact.html" class="cta-btn">Hubungi Editor</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('searchInput');
+
+        function doSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                // Redirect ke halaman index sambil membawa kata kunci pencarian
+                window.location.href = `index.html?search=${encodeURIComponent(query)}`;
+            }
+        }
+
+        searchBtn.addEventListener('click', doSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') doSearch();
+        });
+
+        // Disable button jika input kosong
+        searchInput.addEventListener('input', () => {
+            searchBtn.disabled = searchInput.value.trim() === '';
+        });
+        searchBtn.disabled = true; // Default state
+    </script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baca Artikel</title>
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/search.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS untuk Tombol Kembali ke Atas */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none;
+            background-color: #cc0000;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: background-color 0.3s, transform 0.3s;
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        #backToTop:hover {
+            background-color: #002347;
+            transform: translateY(-5px);
+        }
+
+        /* --- STYLING ARTIKEL GAYA BRITANNICA --- */
+        .article-main {
+            background: white; 
+            padding: 40px 50px; 
+            margin-top: 20px; 
+            margin-bottom: 40px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04); 
+            border-radius: 8px;
+            border-top: 5px solid #002347; /* Aksen elegan di atas */
+        }
+
+        .breadcrumb-nav {
+            font-size: 0.8rem; 
+            color: #666; 
+            margin-bottom: 20px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .breadcrumb-nav a { color: #cc0000; text-decoration: none; font-weight: bold; }
+        .breadcrumb-nav a:hover { text-decoration: underline; }
+
+        .article-title {
+            font-family: 'Playfair Display', serif; 
+            color: #1a1a1a; 
+            font-size: 3rem; 
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        /* Area Penulis dan Tanggal */
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: #555;
+            padding: 12px 0;
+            margin-bottom: 30px;
+            border-top: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .meta-item { display: flex; align-items: center; gap: 6px; }
+
+        /* Container Gambar agar Rapi di Tengah */
+        .article-image-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .article-image-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 550px; /* Mencegah gambar terlalu raksasa secara vertikal */
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none; /* Disembunyikan default */
+            margin: 0 auto;
+        }
+        .image-caption {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 12px;
+            text-align: left;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        /* Konten Teks */
+        .article-content {
+            line-height: 1.9; 
+            color: #222; 
+            font-size: 1.15rem; 
+            /* Menggunakan font serif untuk kesan editorial/buku sejarah */
+            font-family: 'Georgia', 'Times New Roman', serif; 
+            max-width: 800px; /* Dibatasi agar tidak melebar penuh (mudah dibaca) */
+            margin: 0 auto;
+        }
+        
+        /* Merapikan tag h2 dan h3 di dalam konten yang digenerate admin */
+        .article-content h2, .article-content h3 {
+            font-family: 'Playfair Display', serif;
+            color: #002347;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        /* Responsif untuk HP */
+        @media (max-width: 768px) {
+            .article-main { padding: 20px; }
+            .article-title { font-size: 2.2rem; }
+            .article-content { font-size: 1.05rem; }
+        }
+    </style>
+</head>
+<body style="background: #f4f6f9;">
+    <header>
+        <div class="container header-container">
+            <div class="header-top">
+                <div class="logo">ENSIKLOPEDIA</div>
+                <nav class="header-nav">
+                    <a href="category.html">Category</a>
+                    <a href="about.html">About</a>
+                    <a href="index.html">Home</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Cari tokoh atau peristiwa bersejarah...">
+                <button id="searchBtn">
+                    <span id="btnText">Cari</span>
+                    <div id="loadingSpinner" class="spinner" style="display: none;"></div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container article-main">
+        <nav class="breadcrumb-nav">
+            <a href="index.html">HOME</a> 
+            <span style="margin: 0 5px;">/</span> 
+            <span id="artCategory" style="color: #002347; font-weight: bold;">...</span>
+        </nav>
+
+        <h1 id="artTitle" class="article-title">Memuat data...</h1>
+        
+        <div class="article-meta">
+            <div class="meta-item">
+                <svg width="16" height="16" fill="#cc0000" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg>
+                <strong>Editor Ensiklopedia</strong>
+            </div>
+            <div class="meta-item">
+                <svg width="16" height="16" fill="#666" viewBox="0 0 16 16"><path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg>
+                <span id="artDate">Memuat tanggal...</span>
+            </div>
+        </div>
+
+        <div class="article-image-container">
+            <img id="artImage" src="" alt="Foto Artikel">
+            <div id="artImageCaption" class="image-caption"></div>
+        </div>
+        
+        <div id="artContent" class="article-content"></div>
+    </main>
+
+    <button id="backToTop" title="Kembali ke atas">↑</button>
+
+    <script type="module">
+        import { supabase } from './admin/script/supabase.js';
+
+        const params = new URLSearchParams(window.location.search);
+        const slug = params.get('slug');
+
+        async function loadArticle() {
+            if (!slug) {
+                document.getElementById('artTitle').innerText = "Artikel tidak ditemukan.";
+                return;
+            }
+
+            const { data, error } = await supabase
+                .from('articles')
+                .select('*')
+                .eq('slug', slug)
+                .single();
+
+            if (data) {
+                document.title = `${data.title} - Ensiklopedia`;
+                document.getElementById('artTitle').innerText = data.title;
+                document.getElementById('artCategory').innerText = data.category;
+                
+                // Format tanggal dari database
+                if (data.created_at) {
+                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    const formattedDate = new Date(data.created_at).toLocaleDateString('id-ID', options);
+                    document.getElementById('artDate').innerText = `Diperbarui pada ${formattedDate}`;
+                }
+                
+                // Set Gambar dan Caption
+                if (data.image_url) {
+                    const imgEl = document.getElementById('artImage');
+                    imgEl.src = data.image_url;
+                    imgEl.style.display = 'block';
+
+                    // Membuat caption dinamis berdasarkan judul
+                    document.getElementById('artImageCaption').innerHTML = `<strong>Potret ${data.title}</strong>, bagian dari arsip ${data.category} Ensiklopedia.`;
+                    document.getElementById('artImageCaption').style.display = 'block';
+                }
+
+                document.getElementById('artContent').innerHTML = data.content;
+            } else {
+                document.getElementById('artTitle').innerText = "Tokoh tidak ditemukan dalam arsip.";
+            }
+        }
+        loadArticle();
+
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('searchInput');
+
+        function doSearch() {
+            const query = searchInput.value;
+            if (query) {
+                window.location.href = `index.html?search=${encodeURIComponent(query)}`;
+            }
+        }
+
+        searchBtn.addEventListener('click', doSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') doSearch();
+        });
+
+        // --- LOGIKA TOMBOL KEMBALI KE ATAS ---
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.style.display = 'flex';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

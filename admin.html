@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Ensiklopedia</title>
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/header.css">
+    <style>
+        .admin-container { max-width: 900px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        /* --- Form Elements --- */
+        .form-group { margin-bottom: 15px; display: flex; flex-direction: column; }
+        input, select, textarea { 
+            padding: 10px; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+            margin-top: 5px; 
+            font-family: inherit;
+            width: 100%; /* Memastikan lebar input selalu rapi */
+            box-sizing: border-box;
+        }
+
+        /* --- PERBAIKAN CSS BUTTON --- */
+        /* 1. Base Style: Diterapkan ke semua class tombol agar ukurannya seragam */
+        .btn-admin, .btn-secondary, .btn-danger { 
+            padding: 10px 15px; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            color: white;
+            font-family: inherit;
+            font-size: 0.9rem;
+            display: inline-block;
+            text-align: center;
+            transition: background 0.2s ease-in-out;
+        }
+
+        /* 2. Warna Spesifik per Class */
+        .btn-admin { background: #002347; }
+        .btn-admin:hover { background: #cc0000; }
+        
+        .btn-secondary { background: #6c757d; } 
+        .btn-secondary:hover { background: #5a6268; }
+        
+        .btn-danger { background: #dc3545; } 
+        .btn-danger:hover { background: #a71d2a; }
+        
+        /* --- Layout Sections --- */
+        #loginForm, #dashboardPanel, #formPanel { display: none; }
+        
+        /* --- Table Style --- */
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
+        th { background: #f8f9fa; }
+        
+        /* --- Dynamic Blocks --- */
+        .content-block { background: #f8f9fa; padding: 15px; border-left: 4px solid #002347; margin-bottom: 15px; position: relative; border-radius: 4px; }
+        
+        /* Tombol hapus blok khusus dibuat sedikit lebih kecil */
+        .remove-block { 
+            position: absolute; top: 10px; right: 10px; 
+            background: #dc3545; color: white; border: none; 
+            padding: 6px 12px; cursor: pointer; font-size: 0.8rem; border-radius: 4px; 
+            transition: background 0.2s ease;
+        }
+        .remove-block:hover { background: #a71d2a; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">ADMIN PANEL</div>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <div id="loginForm">
+            <h2>Login Admin</h2>
+            <div class="form-group"><label>Email</label><input type="email" id="adminEmail" placeholder="admin@user.com"></div>
+            <div class="form-group"><label>Password</label><input type="password" id="adminPass"></div>
+            <button class="btn-admin" id="btnLogin">Masuk</button>
+        </div>
+
+        <div id="dashboardPanel">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>Kelola Artikel</h2>
+                <div>
+                    <button class="btn-admin" id="btnShowForm">+ Buat Artikel Baru</button>
+                    <button class="btn-secondary" id="btnLogout" style="margin-left: 10px;">Keluar</button>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Judul</th>
+                        <th>Kategori</th>
+                        <th>Tanggal</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="articleTableBody">
+                    </tbody>
+            </table>
+        </div>
+
+        <div id="formPanel">
+            <h2 id="formTitle">Buat Artikel Baru</h2>
+            <input type="hidden" id="editArticleId"> 
+            <div class="form-group"><label>Judul Tokoh/Peristiwa</label><input type="text" id="artTitle"></div>
+            <div class="form-group">
+                <label>Kategori</label>
+                <select id="artCategory">
+                    <option value="Presiden">Presiden</option>
+                    <option value="Wakil Presiden">Wakil Presiden</option>
+                    <option value="Pahlawan Nasional">Pahlawan Nasional</option>
+                    <option value="Raja-Raja Nusantara">Raja-Raja Nusantara</option>
+                    <option value="Tokoh Agama">Tokoh Agama</option>
+                    <option value="Budayawan">Budayawan</option>
+                    <option value="Sastrawan">Sastrawan</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Gambar Artikel (Upload File ATAU Paste URL)</label>
+                <div style="display: flex; gap: 10px; margin-top: 5px;">
+                    <input type="file" id="artImageFile" accept="image/png, image/jpeg, image/webp" style="flex: 1;">
+                    
+                    <input type="text" id="artImageUrl" placeholder="Atau paste URL eksternal di sini..." style="flex: 1;">
+                </div>
+                <small style="color: #666; margin-top: 5px;">*Prioritaskan format .webp untuk efisiensi memori dan loading yang lebih ringan.</small>
+            </div>
+            <div class="form-group"><label>Slug (URL Bebas Spasi)</label><input type="text" id="artSlug" placeholder="contoh: ir-soekarno"></div>
+
+            <hr style="margin: 20px 0; border: 1px solid #eee;">
+            
+            <h3>Isi Artikel</h3>
+            <div class="form-group"><label>Sub Judul</label><input type="text" id="artSubtitle" placeholder="Bapak Proklamator Indonesia"></div>
+            <div class="form-group"><label>Tentang (Singkat)</label><textarea id="artAbout" rows="2" placeholder="Ringkasan singkat tokoh..."></textarea></div>
+            <div class="form-group"><label>Pengenalan (Latar Belakang / Lahir)</label><textarea id="artIntro" rows="4"></textarea></div>
+
+            <div id="dynamicContentsArea">
+                <h4 style="margin: 15px 0 5px 0;">Konten Lanjutan</h4>
+            </div>
+            <button class="btn-secondary" id="btnAddBlock" style="margin-bottom: 20px; font-size: 0.85rem;">+ Tambah Bagian Konten Baru</button>
+
+            <div style="margin-top: 20px; display: flex; gap: 10px;">
+                <button class="btn-admin" id="btnSave">Simpan Artikel</button>
+                <button class="btn-secondary" id="btnCancel">Batal / Kembali</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="admin/client/script.js"></script>
+</body>
+</html>

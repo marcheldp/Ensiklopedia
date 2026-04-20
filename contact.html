@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Kami - Ensiklopedia Tokoh Sejarah</title>
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/search.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- STYLING HALAMAN CONTACT --- */
+        body { background: #f4f6f9; }
+        
+        .contact-hero {
+            background: #00152b; 
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 4px solid #cc0000;
+        }
+
+        .contact-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-hero p {
+            font-size: 1.1rem;
+            color: #cbd5e0;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .contact-main {
+            background: white; 
+            padding: 50px; 
+            margin-top: 30px; 
+            margin-bottom: 50px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
+            border-radius: 8px;
+        }
+
+        /* Layout 2 Kolom */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+        }
+
+        /* Bagian Kiri: Info Kontak */
+        .contact-info h2 {
+            font-family: 'Playfair Display', serif;
+            color: #002347;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-icon {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 50%;
+            color: #cc0000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #eaeaea;
+        }
+
+        .info-text h4 {
+            color: #002347;
+            margin-bottom: 5px;
+            font-size: 1.05rem;
+        }
+        
+        .info-text p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* Bagian Kanan: Formulir */
+        .contact-form {
+            background: #f8f9fa;
+            padding: 35px;
+            border-radius: 8px;
+            border-top: 4px solid #002347;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #002347;
+            outline: none;
+        }
+
+        .btn-submit {
+            background: #cc0000;
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #a00000;
+        }
+
+        /* Responsif untuk HP */
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .contact-main { padding: 30px 20px; }
+            .contact-hero h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="header-top">
+                <div class="logo">ENSIKLOPEDIA</div>
+                <nav class="header-nav">
+                    <a href="category.html">Category</a>
+                    <a href="about.html">About</a>
+                    <a href="index.html">Home</a>
+                    <a href="contact.html" style="font-weight: bold; border-bottom: 2px solid white;">Contact</a>
+                </nav>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Cari tokoh atau peristiwa bersejarah...">
+                <button id="searchBtn">
+                    <span id="btnText">Cari</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Hubungi Kami</h1>
+            <p>Kami menyambut baik saran penyuntingan, kolaborasi penulisan, maupun laporan terkait arsip sejarah di ensiklopedia ini.</p>
+        </div>
+    </section>
+
+    <main class="container contact-main">
+        <div class="contact-grid">
+            
+            <div class="contact-info">
+                <h2>Mari Berdiskusi</h2>
+                <p>Ensiklopedia ini adalah proyek literasi yang terus berkembang. Jika Anda menemukan ketidakakuratan data atau ingin mengusulkan profil tokoh baru, jangan ragu untuk meninggalkan pesan kepada tim redaksi kami.</p>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/></svg>
+                    </div>
+                    <div class="info-text">
+                        <h4>Email Redaksi</h4>
+                        <p>redaksi@ensiklopedia-tokoh.id</p>
+                    </div>
+                </div>
+
+              <div class="info-item">
+                  <div class="info-icon">
+                      <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                  </div>
+                  <div class="info-text">
+                      <h4>Kantor Administrasi</h4>
+                      <p>Jl. Kesatria No.84, Kota Alam, Kec. Kotabumi,<br>Kabupaten Lampung Utara, Lampung 34511</p>
+                  </div>
+              </div>
+            </div>
+
+            <div class="contact-form-container">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="senderName">Nama Lengkap</label>
+                        <input type="text" id="senderName" placeholder="Masukkan nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="senderEmail">Alamat Email</label>
+                        <input type="email" id="senderEmail" placeholder="contoh@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subjek Pesan</label>
+                        <select id="subject" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
+                            <option value="Saran Tokoh Baru">Usulan Tokoh Baru</option>
+                            <option value="Koreksi Artikel">Koreksi Data Artikel</option>
+                            <option value="Kolaborasi">Kerja Sama / Kolaborasi</option>
+                            <option value="Lainnya">Pertanyaan Lainnya</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Pesan Anda</label>
+                        <textarea id="message" rows="5" placeholder="Tuliskan pesan atau koreksi Anda secara detail di sini..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Kirim Pesan</button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Logika Formulir Kontak (Simulasi Pengiriman)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah reload halaman
+            
+            const btn = document.querySelector('.btn-submit');
+            const originalText = btn.innerText;
+            
+            // Efek Loading
+            btn.innerText = "Mengirim...";
+            btn.style.background = "#666";
+            btn.disabled = true;
+
+            // Simulasi jeda waktu pengiriman (1.5 detik)
+            setTimeout(() => {
+                alert("Terima kasih! Pesan Anda telah terkirim ke redaksi kami.");
+                this.reset(); // Mengosongkan formulir
+                
+                // Kembalikan tombol ke kondisi semula
+                btn.innerText = originalText;
+                btn.style.background = "#cc0000";
+                btn.disabled = false;
+            }, 1500);
+        });
+
+        // Logika Pencarian (Redirect ke Home)
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('searchInput');
+
+        function doSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                window.location.href = `index.html?search=${encodeURIComponent(query)}`;
+            }
+        }
+
+        searchBtn.addEventListener('click', doSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') doSearch();
+        });
+
+        // Disable button jika input kosong
+        searchInput.addEventListener('input', () => {
+            searchBtn.disabled = searchInput.value.trim() === '';
+        });
+        searchBtn.disabled = true;
+    </script>
+</body>
+</html>
